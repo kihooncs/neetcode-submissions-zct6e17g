@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '[' || c == '(' || c == '{') {
+                stack.add(c);
+            } else {
+                // closing paren
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char open = stack.pop();
+                if (c == ']' && open != '[') {
+                    return false;
+                } else if (c == ')' && open != '(') {
+                    return false;
+                } else if (c == '}' && open != '{') {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
